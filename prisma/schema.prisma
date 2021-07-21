@@ -1,0 +1,25 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Phone {
+  id            Int     @id @default(autoincrement())
+  name          String
+  manufacturer  String
+  description   String?
+  color         String?
+  price         Float?
+  imageFileName String?
+  screenSize    String?
+  screenType    String?
+  processor     String?
+  ram           String?
+}
