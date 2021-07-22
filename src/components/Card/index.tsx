@@ -6,6 +6,7 @@ export const Card = ({ phone }: { phone: Phone }) => (
   <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden">
     <Box minH="200" position="relative">
       <Image
+        objectFit="cover"
         layout="fill"
         src={phone.imageFileName || "/no_image.svg"}
         alt={`${phone.manufacturer} ${phone.name}`}
