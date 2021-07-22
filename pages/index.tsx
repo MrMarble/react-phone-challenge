@@ -61,21 +61,19 @@ export default function Home({
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Container maxW="7xl">
-        <SimpleGrid minChildWidth="240px" spacing={10}>
-          {phones.map((phone) => (
-            <Card key={phone.id} phone={phone} />
-          ))}
-        </SimpleGrid>
-        {loading && (
-          <Center>
-            <Box p="30">
-              <Spinner label="loading" size="xl" color="teal.200" />
-            </Box>
-          </Center>
-        )}
-        <div id="bottom" ref={fromRef} />
-      </Container>
+      <SimpleGrid minChildWidth="240px" spacing={10}>
+        {phones.map((phone) => (
+          <Card key={phone.id} phone={phone} />
+        ))}
+      </SimpleGrid>
+      {loading && (
+        <Center>
+          <Box p="30">
+            <Spinner label="loading" size="xl" color="teal.200" />
+          </Box>
+        </Center>
+      )}
+      <div id="bottom" ref={fromRef} />
     </>
   );
 }
