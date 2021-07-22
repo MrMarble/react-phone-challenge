@@ -41,7 +41,7 @@ export default function Details() {
         <title>{loading ? "Details" : phone?.name}</title>
       </Head>
       <Center>
-        <Box p="6" boxShadow="lg" borderRadius="lg" display="flex" w="100%">
+        <Box p="6" boxShadow="lg" borderRadius="lg" w="100%">
           <Stack direction={["column", "row"]} align="center" justify="center">
             <Box minH="sm" minW="sm" position="relative">
               <SkeletonCircle
@@ -61,7 +61,7 @@ export default function Details() {
                 />
               )}
             </Box>
-            <Box minW="sm">
+            <Box minW="xs">
               <SkeletonText spacing={4} noOfLines={10} isLoaded={!loading} />
 
               {phone && (
