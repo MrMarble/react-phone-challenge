@@ -12,7 +12,7 @@ import Head from "next/head";
 import { useEffect, useState } from "react";
 
 import { Card } from "../src/components/Card";
-import useNearScreen from "../src/hooks/userNearScreen";
+import useNearScreen from "../src/hooks/useNearScreen";
 import { getPhones } from "./api/phones";
 
 export async function getServerSideProps() {
