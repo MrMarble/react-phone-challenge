@@ -16,7 +16,7 @@ model Phone {
   manufacturer  String
   description   String?
   color         String?
-  price         Float?
+  price         Int?
   imageFileName String?
   screenSize    String?
   screenType    String?
