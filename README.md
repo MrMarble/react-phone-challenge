@@ -9,6 +9,10 @@
 - Create a REST API providing phone information with crud capabilities
 - Create a react app to browse through the catalog
 
+## Onlie demo
+
+https://react-phone-challenge.vercel.app
+
 ## Local installation
 
 You need `node` and `docker`.
