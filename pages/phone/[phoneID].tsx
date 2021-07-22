@@ -66,14 +66,14 @@ export default function Details() {
 
               {phone && (
                 <UnorderedList>
-                  {Object.keys(phone)
-                    .filter((key) => !["id", "imageFileName"].includes(key))
-                    .map((key) => (
+                  {Object.entries(phone)
+                    .filter(([key]) => !["id", "imageFileName"].includes(key))
+                    .map(([key, value]) => (
                       <ListItem key={key}>
                         <Text as="b" textTransform="capitalize">
                           {key}:&nbsp;
                         </Text>
-                        {phone[key]}
+                        {value}
                       </ListItem>
                     ))}
                 </UnorderedList>
