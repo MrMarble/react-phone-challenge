@@ -14,6 +14,7 @@ export const Header = () => (
     zIndex="10"
     mb="3rem"
     display="flex"
+    data-testid="header"
   >
     <Flex alignItems="center">
       <Image src="/favicon.ico" width="32" height="32" alt="logo" />
