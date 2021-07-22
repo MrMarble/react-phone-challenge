@@ -3,7 +3,14 @@ import Image from 'next/image'
 
 import styles from '../styles/Home.module.css'
 
-export default function Home() {
+export async function getServerSideProps() {
+  const phones = await getPhones(0, 10);
+  return {
+    props: { phones },
+  };
+}
+
+export default function Home({ phones }: { phones: Array<Phone> }) {
   return (
     <div className={styles.container}>
       <Head>
@@ -18,7 +25,7 @@ export default function Home() {
         </h1>
 
         <p className={styles.description}>
-          Get started by editing{' '}
+          Get started by editing{" "}
           <code className={styles.code}>pages/index.js</code>
         </p>
 
@@ -50,6 +57,11 @@ export default function Home() {
               Instantly deploy your Next.js site to a public URL with Vercel.
             </p>
           </a>
+          {phones.map(({ name, manufacturer }) => (
+            <a href="#" className={styles.card}>
+              <h2>{name}</h2>
+            </a>
+          ))}
         </div>
       </main>
 
@@ -59,12 +71,12 @@ export default function Home() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Powered by{' '}
+          Powered by{" "}
           <span className={styles.logo}>
             <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
           </span>
         </a>
       </footer>
     </div>
-  )
+  );
 }
