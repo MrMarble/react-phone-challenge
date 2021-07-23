@@ -1,8 +1,9 @@
 import {
+  Alert,
+  AlertIcon,
   Badge,
   Box,
   Center,
-  Flex,
   Heading,
   List,
   ListItem,
@@ -10,8 +11,6 @@ import {
   SkeletonText,
   Stack,
   Text,
-  UnorderedList,
-  VStack,
 } from "@chakra-ui/react";
 import { Phone } from "@prisma/client";
 import axios from "axios";
@@ -27,9 +26,13 @@ export default function Details() {
   const [loading, setLoading] = useState(true);
 
   const fetchPhone = async () => {
-    const newPhone = await (await axios.get(`/api/phones/${phoneID}`)).data;
-    setPhone(newPhone);
-    setLoading(false);
+    try {
+      const newPhone = await (await axios.get(`/api/phones/${phoneID}`)).data;
+      setPhone(newPhone);
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -45,6 +48,12 @@ export default function Details() {
       </Head>
       <Center>
         <Box p="6" boxShadow="lg" borderRadius="lg" w="100%">
+          {!loading && !phone && (
+            <Alert status="error">
+              <AlertIcon />
+              Phone not found
+            </Alert>
+          )}
           <Stack direction={["column", "row"]} align="center" justify="center">
             <Box minH="sm" minW="sm" position="relative">
               <SkeletonCircle
