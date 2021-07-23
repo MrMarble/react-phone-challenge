@@ -1,7 +1,10 @@
 import {
+  Badge,
   Box,
   Center,
   Flex,
+  Heading,
+  List,
   ListItem,
   SkeletonCircle,
   SkeletonText,
@@ -65,18 +68,50 @@ export default function Details() {
               <SkeletonText spacing={4} noOfLines={10} isLoaded={!loading} />
 
               {phone && (
-                <UnorderedList>
-                  {Object.entries(phone)
-                    .filter(([key]) => !["id", "imageFileName"].includes(key))
-                    .map(([key, value]) => (
-                      <ListItem key={key}>
-                        <Text as="b" textTransform="capitalize">
-                          {key}:&nbsp;
-                        </Text>
-                        {value}
-                      </ListItem>
-                    ))}
-                </UnorderedList>
+                <>
+                  <Text fontWeight="bold" color="gray.400">
+                    <Badge
+                      mr="3"
+                      borderRadius="5"
+                      backgroundColor="teal"
+                      color="white"
+                      px="2"
+                      py="1"
+                    >
+                      {phone.manufacturer}
+                    </Badge>
+                    {phone.price && `${phone.price}€`}
+                  </Text>
+                  <Heading mb="6" mt="2" color="gray.700">
+                    {phone.name}
+                  </Heading>
+                  <List>
+                    {Object.entries(phone)
+                      .filter(
+                        ([key, value]) =>
+                          ![
+                            "id",
+                            "imageFileName",
+                            "name",
+                            "manufacturer",
+                            "price",
+                          ].includes(key) && value
+                      )
+                      .map(([key, value]) => (
+                        <ListItem key={key} color="gray.700">
+                          <Text
+                            as="span"
+                            fontWeight="semibold"
+                            textTransform="capitalize"
+                            color="gray.800"
+                          >
+                            {key}:&nbsp;
+                          </Text>
+                          {value}
+                        </ListItem>
+                      ))}
+                  </List>
+                </>
               )}
             </Box>
           </Stack>
