@@ -7,6 +7,7 @@ import prisma from "../../../lib/prisma";
 type Data = {
   error?: string;
   phones?: Array<Phone>;
+  total?: number;
 };
 
 export async function getPhones(
@@ -17,6 +18,10 @@ export async function getPhones(
     skip,
     take,
   });
+}
+
+export async function getPhoneCount(): Promise<number> {
+  return await prisma.phone.count();
 }
 
 export default async function handler(
@@ -30,7 +35,7 @@ export default async function handler(
 
     const phones = await getPhones(currentPage * phonesPerPage, phonesPerPage);
 
-    res.status(200).json({ phones });
+    res.status(200).json({ phones, total: await getPhoneCount() });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
