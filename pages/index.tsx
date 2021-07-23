@@ -2,19 +2,22 @@ import { Phone } from "@prisma/client";
 import { PhoneGrid } from "components/PhoneGrid";
 import Head from "next/head";
 
-import { getPhones } from "./api/phones";
+import { getPhoneCount, getPhones } from "./api/phones";
 
 export async function getServerSideProps() {
   const phones = await getPhones(0, 10);
+  const total = await getPhoneCount();
   return {
-    props: { phones },
+    props: { phones, total },
   };
 }
 
 export default function Home({
   phones: initialPhones,
+  total = 0,
 }: {
   phones: Array<Phone>;
+  total: number;
 }) {
   return (
     <>
@@ -26,7 +29,7 @@ export default function Home({
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <PhoneGrid initialPhones={initialPhones} />
+      <PhoneGrid initialPhones={initialPhones} total={total} />
     </>
   );
 }

@@ -1,26 +1,29 @@
-import { Box, Flex, Heading } from "@chakra-ui/react";
-import Image from "next/image";
-import NextLink from "next/link";
+import { usePhoneContext } from "components/Provider";
+import { useEffect, useState } from "react";
 
-export const Header = () => (
-  <Box
-    as="header"
-    position="sticky"
-    bg="teal"
-    paddingInlineStart="6"
-    paddingInlineEnd="6"
-    height="4.5rem"
-    top="0"
-    zIndex="10"
-    mb="3rem"
-    display="flex"
-    data-testid="header"
-  >
-    <Flex alignItems="center">
-      <Image src="/favicon.ico" width="32" height="32" alt="logo" />
-      <Heading color="white" pl="3">
-        <NextLink href="/">phones</NextLink>
-      </Heading>
-    </Flex>
-  </Box>
-);
+import { HeaderComponent } from "./Header";
+
+function scaleBetween(
+  unscaledNum: number,
+  minAllowed: number,
+  maxAllowed: number,
+  min: number,
+  max: number
+) {
+  return (
+    ((maxAllowed - minAllowed) * (unscaledNum - min)) / (max - min) + minAllowed
+  );
+}
+
+export const Header = () => {
+  const { phoneCount, totalPhones } = usePhoneContext();
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    const progressPercent = scaleBetween(phoneCount, 0, 100, 0, totalPhones);
+    console.log({ progress, phoneCount });
+    setProgress(progressPercent | 0);
+  }, [phoneCount]);
+
+  return <HeaderComponent progress={progress} />;
+};
