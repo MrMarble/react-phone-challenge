@@ -21,7 +21,6 @@ export const Header = () => {
 
   useEffect(() => {
     const progressPercent = scaleBetween(phoneCount, 0, 100, 0, totalPhones);
-    console.log({ progress, phoneCount });
     setProgress(progressPercent | 0);
   }, [phoneCount]);
 

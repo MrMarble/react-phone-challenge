@@ -9,7 +9,7 @@ export const Progress = ({
       height="1"
       bgColor="whatsapp.100"
       width={`${value}%`}
-      transition="all 0.2s ease-in-out"
+      transition="all 0.8s ease-in-out"
     />
   </Box>
 );
