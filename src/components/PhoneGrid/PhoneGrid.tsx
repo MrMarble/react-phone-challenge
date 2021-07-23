@@ -14,7 +14,7 @@ export const PhoneGridComponent = ({
   fromRef: RefObject<HTMLDivElement>;
 }) => (
   <>
-    <SimpleGrid minChildWidth="240px" spacing={10}>
+    <SimpleGrid minChildWidth="240px" spacing={10} pb="10">
       {phones.map((phone) => (
         <Card key={phone.id} phone={phone} />
       ))}
